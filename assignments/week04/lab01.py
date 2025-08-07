@@ -1,6 +1,6 @@
 """
 Personal Information Manager 
-#s
+#Tharadon Suesat 6730251115
 #Create a tuple to store a person's basic info: (name, age, city, country)
 #Create a list to store their hobbies
  
@@ -16,7 +16,7 @@ Update age (by creating a new tuple)
 # Complete this program
 def personal_info_manager():
     # Create initial person tuple
-    person = ("Wanwisa", 20, "Chonburi", "TH")  # name, age, city, country
+    person = ("Tharadon", 20, "Chonburi", "TH")  # name, age, city, country
     hobbies = []
  
     while True:
