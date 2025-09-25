@@ -39,12 +39,11 @@ Example
     Congratulations! You won in 10 attempts!
 
 """
-
 import random
 
 def get_parity_hint(number):
     if number % 2 == 0:
-        return "HINT: The number is even" 
+        return "HINT: The number is even"
     else:
         return "HINT: The number is odd"
 
@@ -57,9 +56,51 @@ def get_divisibility_hint(number):
         return "HINT: The number is NOT divisible by 3 or 5"
 
 def get_range_hint(number, current_min=1, current_max=100):
-    # Return narrowed range around the number
-    pass
+    lower_bound = max(current_min, number - 12)
+    upper_bound = min(current_max, number + 12)
+    return f"HINT: The number is between {lower_bound} and {upper_bound}"
 
 def get_thefirst_digit_hint(number):
-    # Retun the first digit of the number
-    pass
+    return f"HINT: The first digit of the number is {str(number)[0]}"
+
+def play_game():
+    secret_number = random.randint(1, 100)
+    attempts = 0
+    print("=== Enhanced GUESSING GAME ===")
+    print("Guess my number between 1 and 100!")
+    print("You have unlimited attempts.\n")
+
+    while True:
+        attempts += 1
+        guess_input = input(f"Attempt {attempts} - Enter your guess: ")
+
+        if not guess_input.isdigit():
+            print("Invalid input! Please enter a number between 1 and 100.\n")
+            continue
+
+        guess = int(guess_input)
+
+        if guess < 1 or guess > 100:
+            print("Number out of range! Please choose a number between 1 and 100.\n")
+            continue
+
+        if guess == secret_number:
+            print(f"Congratulations! You won in {attempts} attempts!")
+            break
+        elif guess < secret_number:
+            print("Too low! Try again.")
+        else:
+            print("Too high! Try again.")
+
+        if attempts >= 3:
+            print(get_parity_hint(secret_number))
+        if attempts >= 5:
+            print(get_divisibility_hint(secret_number))
+        if attempts >= 7:
+            print(get_range_hint(secret_number))
+        if attempts >= 10:
+            print(get_thefirst_digit_hint(secret_number))
+
+        print()
+
+play_game()
